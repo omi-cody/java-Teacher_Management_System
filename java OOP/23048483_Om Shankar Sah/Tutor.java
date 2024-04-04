@@ -18,7 +18,7 @@ public class Tutor extends Teacher//Define tutor subclass of Parent class Teache
     String empStatus,int workingHour,double salary,String speci,String acaQual,int performIndex)
     {
         //Call the teacher class constructor and setter method
-        //super(teacherId,teacherName,address,workingType,empStatus);
+        super(teacherId,teacherName,address,workingType,empStatus);
         this.setWorkingHour(workingHour);
         //Assign the salary ,specilization ,academic qualification,performance index with parameter values
         this.salary=salary;
