@@ -58,31 +58,35 @@ public class Lecturer extends Teacher//Define lecturer class as sublclass of Tea
           this.yearOfExp=yearOfExp;
           //Grade the assignments according to criteria given
            String grade;
-          if(gradedScore>=70)
+          if(gradedScore>=70 && gradedScore<=100)
           {
               grade="Grade A";
               return grade;
           }
-          else if(gradedScore>=60)
+          else if(gradedScore>=60 && gradedScore<=69)
           {
               grade="Grade B";
               return grade;
           }
-          else if(gradedScore>=50)
+          else if(gradedScore>=50 && gradedScore<=49)
           {
               grade="Grade C";
               return grade;
           }
-          else if(gradedScore>=40)
+          else if(gradedScore>=40 && gradedScore<=49)
           {
               grade="Grade D";
               return grade;
           }
-          else
+          else if (gradedScore>=0 && gradedScore<=39)
           {
               grade="Grade E";
               return grade;
           } 
+          else{
+            grade="Invalid Mark";
+            return grade;
+          }
           
           
       }
