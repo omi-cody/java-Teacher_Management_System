@@ -15,9 +15,17 @@ public class TeacherGUI
     private JTextField teacherId_T,teaecherName_T,address_T,workingT_T,speci_T,workingH_T,empStat_T,acaQuali_T,performanceI_T,salary_T;
     private JButton addTutor_Btn,setSalary_Btn,remTutor_Btn,display_Btn,clear_Btn;
     TeacherGUI(){
+        //frame
         teacherGui=new JFrame("Tutor");
         teacherGui.setDefaultCloseOperation(teacherGui.EXIT_ON_CLOSE);
         teacherGui.setSize(500, 530);
+        ImageIcon icon =new ImageIcon("teacherLogo.jpg");
+        teacherGui.setLayout(null);
+
+        //panel for Heading
+        titlePanel = new JPanel();
+        titlePanel.setSize(490,55);
+        teacherGui.add(titlePanel);
         
 
         teacherGui.setVisible(true);
