@@ -7,8 +7,8 @@ import javax.swing.*;
 /**
  * Write a description of class TeacherGUI here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (OM SHANKAR SAH)
+ * @version (2024-04-06)
  */
 public class TeacherGUI implements ActionListener {
     private JFrame teacherGui;
