@@ -12,7 +12,7 @@ import javax.swing.*;
  */
 public class TeacherGUI implements ActionListener {
     private JFrame teacherGui;
-    private JPanel titlePanel, TmainPanel, setSalaryPanel, rmvtutorpanel, footerPanel;
+    private JPanel titlePanel, tutor_mainPanel, setSalaryPanel, rmvtutorpanel, footerPanel;
     private JLabel tTutor, teacherId_L, teacherName_L, add_L, workingT_L, speci_L, workingH_L, empStat__L, acaQuali_L,
             performanceI_L, salary_L, Salary_teacher_ID_L, new_performI_L, new_Salary_L, rmvTeacherID_L;
     private JTextField teacherId_T, teacherName_T, address_T, workingT_T, speci_T, workingH_T, empStat_T, acaQuali_T,
@@ -32,7 +32,7 @@ public class TeacherGUI implements ActionListener {
 
         // panel for Heading
         // Color objects
-        Color Pcolor1 = new Color(253, 247, 228); // color for panels
+        Color pColor1 = new Color(253, 247, 228); // color for panels
         Color color2 = new Color(250, 238, 209);
         Color color3 = new Color(222, 208, 182);
         Color color4 = new Color(187, 171, 140);
@@ -40,7 +40,7 @@ public class TeacherGUI implements ActionListener {
         titlePanel = new JPanel();
         titlePanel.setLayout(null);
         titlePanel.setBounds(0, 0, 700, 60);
-        titlePanel.setBackground(Pcolor1);
+        titlePanel.setBackground(pColor1);
         titlePanel.setVisible(true);
         teacherGui.add(titlePanel);
         // title in panel
@@ -59,123 +59,123 @@ public class TeacherGUI implements ActionListener {
         // Font for Labels
         Font LabelFont = new Font("Times Roman", 1, 14);
         Font TextFont = new Font("Times Roman", 0, 13);
-        TmainPanel = new JPanel();
-        TmainPanel.setLayout(null);
-        TmainPanel.setBackground(Pcolor1);
-        TmainPanel.setBounds(0, 65, 700, 230);
-        teacherGui.add(TmainPanel);
+        tutor_mainPanel = new JPanel();
+        tutor_mainPanel.setLayout(null);
+        tutor_mainPanel.setBackground(pColor1);
+        tutor_mainPanel.setBounds(0, 65, 700, 230);
+        teacherGui.add(tutor_mainPanel);
         // TeacherId label
         teacherId_L = new JLabel("Teacher ID:");
         teacherId_L.setFont(LabelFont);
         teacherId_L.setBounds(10, 10, 90, 20);
-        TmainPanel.add(teacherId_L);
+        tutor_mainPanel.add(teacherId_L);
         // teacherId textfield
         teacherId_T = new JTextField();
         teacherId_T.setBounds(130, 10, 80, 25);
         teacherId_T.setFont(TextFont);
-        TmainPanel.add(teacherId_T);
+        tutor_mainPanel.add(teacherId_T);
         // teacher Name Label
         teacherName_L = new JLabel("Teacher Name:");
         teacherName_L.setFont(LabelFont);
         teacherName_L.setBounds(10, 45, 120, 20);
-        TmainPanel.add(teacherName_L);
+        tutor_mainPanel.add(teacherName_L);
         // teacher Name textfield
         teacherName_T = new JTextField();
         teacherName_T.setBounds(130, 45, 160, 25);
         teacherName_T.setFont(TextFont);
-        TmainPanel.add(teacherName_T);
+        tutor_mainPanel.add(teacherName_T);
         // address Label
         add_L = new JLabel("Address:");
         add_L.setFont(LabelFont);
         add_L.setBounds(350, 45, 80, 20);
-        TmainPanel.add(add_L);
+        tutor_mainPanel.add(add_L);
         // address TextField
         address_T = new JTextField();
         address_T.setBounds(510, 45, 160, 25);
         address_T.setFont(TextFont);
-        TmainPanel.add(address_T);
+        tutor_mainPanel.add(address_T);
         // working Type Label
         workingT_L = new JLabel("Working Type:");
         workingT_L.setFont(LabelFont);
         workingT_L.setBounds(10, 80, 120, 20);
-        TmainPanel.add(workingT_L);
+        tutor_mainPanel.add(workingT_L);
         // working Type Textfield
         workingT_T = new JTextField();
         workingT_T.setBounds(130, 80, 160, 25);
         workingT_T.setFont(TextFont);
-        TmainPanel.add(workingT_T);
+        tutor_mainPanel.add(workingT_T);
         // Specialization label
         speci_L = new JLabel("Specialization:");
         speci_L.setFont(LabelFont);
         speci_L.setBounds(350, 80, 120, 20);
-        TmainPanel.add(speci_L);
+        tutor_mainPanel.add(speci_L);
         // Specialization textfield
         speci_T = new JTextField();
         speci_T.setBounds(510, 80, 160, 25);
         speci_T.setFont(TextFont);
-        TmainPanel.add(speci_T);
+        tutor_mainPanel.add(speci_T);
         // Working Hour Label
         workingH_L = new JLabel("Working Hour:");
         workingH_L.setFont(LabelFont);
         workingH_L.setBounds(10, 115, 120, 20);
-        TmainPanel.add(workingH_L);
+        tutor_mainPanel.add(workingH_L);
         // working Hour textfield
         workingH_T = new JTextField();
         workingH_T.setBounds(130, 115, 160, 25);
         workingH_T.setFont(TextFont);
-        TmainPanel.add(workingH_T);
+        tutor_mainPanel.add(workingH_T);
         // Employment Status Label
         empStat__L = new JLabel("Employment Status:");
         empStat__L.setFont(LabelFont);
         empStat__L.setBounds(350, 115, 145, 20);
-        TmainPanel.add(empStat__L);
+        tutor_mainPanel.add(empStat__L);
         // Employment Status textfield
         empStat_T = new JTextField();
         empStat_T.setBounds(510, 115, 160, 25);
         empStat_T.setFont(TextFont);
-        TmainPanel.add(empStat_T);
+        tutor_mainPanel.add(empStat_T);
         // Academic Qualification label
         acaQuali_L = new JLabel("Academic Qua.:");
         acaQuali_L.setFont(LabelFont);
         acaQuali_L.setBounds(10, 150, 120, 20);
-        TmainPanel.add(acaQuali_L);
+        tutor_mainPanel.add(acaQuali_L);
         // Academic Qualification TextField
         acaQuali_T = new JTextField();
         acaQuali_T.setBounds(130, 150, 160, 25);
         acaQuali_T.setFont(TextFont);
-        TmainPanel.add(acaQuali_T);
+        tutor_mainPanel.add(acaQuali_T);
         // Performance Index Label
         performanceI_L = new JLabel("Performance Index:");
         performanceI_L.setFont(LabelFont);
         performanceI_L.setBounds(350, 150, 140, 20);
-        TmainPanel.add(performanceI_L);
+        tutor_mainPanel.add(performanceI_L);
         // Performance Index textfield
         performanceI_T = new JTextField();
         performanceI_T.setBounds(510, 150, 160, 25);
         performanceI_T.setFont(TextFont);
-        TmainPanel.add(performanceI_T);
+        tutor_mainPanel.add(performanceI_T);
         // salary Label
         salary_L = new JLabel("Salary:");
         salary_L.setFont(LabelFont);
         salary_L.setBounds(10, 185, 80, 20);
-        TmainPanel.add(salary_L);
+        tutor_mainPanel.add(salary_L);
         // salary textfield
         salary_T = new JTextField();
         salary_T.setBounds(130, 185, 160, 25);
         salary_T.setFont(TextFont);
-        TmainPanel.add(salary_T);
+        tutor_mainPanel.add(salary_T);
         // add Tutor Button
         addTutor_Btn = new JButton("ADD TUTOR");
         addTutor_Btn.setBounds(510, 185, 160, 25);
         addTutor_Btn.setFont(new Font("Times Roman", 1, 14));
         addTutor_Btn.setBackground(color3);
-        TmainPanel.add(addTutor_Btn);
+        tutor_mainPanel.add(addTutor_Btn);
         addTutor_Btn.setFocusable(false);
         /******************** Set Salary Panel************ */
         setSalaryPanel = new JPanel();
         setSalaryPanel.setLayout(null);
         setSalaryPanel.setBounds(0, 300, 700, 90);
-        setSalaryPanel.setBackground(Pcolor1);
+        setSalaryPanel.setBackground(pColor1);
         setSalaryPanel.setVisible(true);
         teacherGui.add(setSalaryPanel);
 
@@ -234,7 +234,7 @@ public class TeacherGUI implements ActionListener {
         /***********************Remove Tutor Panel************************** */
         rmvtutorpanel = new JPanel();
         rmvtutorpanel.setLayout(null);
-        rmvtutorpanel.setBackground(Pcolor1);
+        rmvtutorpanel.setBackground(pColor1);
         rmvtutorpanel.setBounds(0,395,700,60);
         teacherGui.add(rmvtutorpanel);
 
@@ -261,7 +261,7 @@ public class TeacherGUI implements ActionListener {
         //Display and clear panel or Footer Panel
         footerPanel=new JPanel();
         footerPanel.setLayout(null);
-        footerPanel.setBackground(Pcolor1);
+        footerPanel.setBackground(pColor1);
         footerPanel.setBounds(0,460,700,80);
         teacherGui.add(footerPanel);
 
@@ -294,7 +294,7 @@ public class TeacherGUI implements ActionListener {
     public void actionPerformed(ActionEvent s) {
         if (s.getSource()==select) {
             if (select.getSelectedItem()=="Lecturer") {
-                TmainPanel.setVisible(false);
+                tutor_mainPanel.setVisible(false);
                 setSalaryPanel.setVisible(false);
                 rmvtutorpanel.setVisible(false);
                 tTutor.setBounds(280, 5, 200, 44);
@@ -304,7 +304,7 @@ public class TeacherGUI implements ActionListener {
                 
             }
             else{
-                TmainPanel.setVisible(true);
+                tutor_mainPanel.setVisible(true);
                 setSalaryPanel.setVisible(true);
                 rmvtutorpanel.setVisible(true);
                 tTutor.setText("TUTOR");
