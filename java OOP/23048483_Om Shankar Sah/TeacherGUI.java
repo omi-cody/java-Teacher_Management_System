@@ -62,7 +62,7 @@ public class TeacherGUI implements ActionListener {
         Font LabelFont = new Font("Times Roman", 1, 14);
         Font TextFont = new Font("Times Roman", 0, 13);
         tutor_mainPanel = new JPanel();
-        tutor_mainPanel.setVisible(false);
+        tutor_mainPanel.setVisible(true);
         tutor_mainPanel.setLayout(null);
         tutor_mainPanel.setBackground(pColor1);
         tutor_mainPanel.setBounds(0, 65, 700, 230);
@@ -190,7 +190,7 @@ public class TeacherGUI implements ActionListener {
 
         // add Tutor Button
         addTutor_Btn = new JButton("ADD TUTOR");
-        addTutor_Btn.setBounds(510, 185, 160, 25);
+        addTutor_Btn.setBounds(510, 185, 160, 30);
         addTutor_Btn.setFont(new Font("Times Roman", 1, 14));
         addTutor_Btn.setBackground(color3);
         tutor_mainPanel.add(addTutor_Btn);
@@ -200,20 +200,11 @@ public class TeacherGUI implements ActionListener {
         setSalaryPanel.setLayout(null);
         setSalaryPanel.setBounds(0, 300, 700, 90);
         setSalaryPanel.setBackground(pColor1);
-        setSalaryPanel.setVisible(false);
+        setSalaryPanel.setVisible(true);
         teacherGui.add(setSalaryPanel);
 
         // Set Salary TeacherID Label
         Salary_teacher_ID_L = new JLabel("Teacher ID:");
-        Salary_teacher_ID_L.setFont(LabelFont);
-        Salary_teacher_ID_L.setBounds(10, 10, 90, 20);
-        setSalaryPanel.add(Salary_teacher_ID_L);
-
-        //set Salary Teacher ID Textfield
-        Salary_teacher_ID_T=new JTextField();
-        Salary_teacher_ID_T.setBounds(130, 10, 80, 25);
-        Salary_teacher_ID_T.setFont(TextFont);
-        setSalaryPanel.add(Salary_teacher_ID_T);Salary_teacher_ID_L = new JLabel("Teacher ID:");
         Salary_teacher_ID_L.setFont(LabelFont);
         Salary_teacher_ID_L.setBounds(10, 10, 90, 20);
         setSalaryPanel.add(Salary_teacher_ID_L);
@@ -229,6 +220,7 @@ public class TeacherGUI implements ActionListener {
         new_performI_L.setFont(LabelFont);
         new_performI_L.setBounds(320, 10, 180, 20);
         setSalaryPanel.add(new_performI_L);
+
         //  New Performance Index textfield
         new_performI_T = new JTextField();
         new_performI_T.setBounds(510, 10, 160, 25);
@@ -240,6 +232,7 @@ public class TeacherGUI implements ActionListener {
         new_Salary_L.setFont(LabelFont);
         new_Salary_L.setBounds(10, 45, 100, 20);
         setSalaryPanel.add(new_Salary_L);
+
         // New salary textfield
         new_Salary_T = new JTextField();
         new_Salary_T.setBounds(130, 45, 160, 25);
@@ -248,7 +241,7 @@ public class TeacherGUI implements ActionListener {
 
         //Add set salary Button
         setSalary_Btn = new JButton("SET SALARY");
-        setSalary_Btn.setBounds(510, 45, 160, 25);
+        setSalary_Btn.setBounds(510, 45, 160, 30);
         setSalary_Btn.setFont(new Font("Times Roman", 1, 14));
         setSalary_Btn.setBackground(color3);
         setSalaryPanel.add(setSalary_Btn);
@@ -260,7 +253,7 @@ public class TeacherGUI implements ActionListener {
         rmvtutorpanel.setLayout(null);
         rmvtutorpanel.setBackground(pColor1);
         rmvtutorpanel.setBounds(0,395,700,60);
-        rmvtutorpanel.setVisible(false);
+        rmvtutorpanel.setVisible(true);
         teacherGui.add(rmvtutorpanel);
 
         //Remove teacher Id Label
@@ -277,7 +270,7 @@ public class TeacherGUI implements ActionListener {
 
         //Remove Tutor Button
         rmvTutor_Btn = new JButton("REMOVE TUTOR");
-        rmvTutor_Btn.setBounds(510, 20, 160, 25);
+        rmvTutor_Btn.setBounds(510, 20, 160, 30);
         rmvTutor_Btn.setFont(new Font("Times Roman", 1, 14));
         rmvTutor_Btn.setBackground(color3);
         rmvtutorpanel.add(rmvTutor_Btn);
@@ -294,7 +287,7 @@ public class TeacherGUI implements ActionListener {
         tutor_display_Btn=new JButton("DISPLAY");
         tutor_display_Btn.setBounds(100, 30, 160, 30);
         tutor_display_Btn.setFont(new Font("Times Roman", 1, 14));
-        tutor_display_Btn.setVisible(false);
+        tutor_display_Btn.setVisible(true);
         tutor_display_Btn.setBackground(color3);
         footerPanel.add(tutor_display_Btn);
         tutor_display_Btn.setFocusable(false);
@@ -314,6 +307,7 @@ public class TeacherGUI implements ActionListener {
         lec_mainPanel.setLayout(null);
         lec_mainPanel.setBackground(pColor1);
         lec_mainPanel.setBounds(0, 65, 700, 230);
+        lec_mainPanel.setVisible(false);
         teacherGui.add(lec_mainPanel);
 
         //Lecturer techer Id
@@ -376,14 +370,126 @@ public class TeacherGUI implements ActionListener {
         l_empStatus_T.setFont(TextFont);
         lec_mainPanel.add(l_empStatus_T);
 
+        //Lecturer GradedScore Label
+        gradedScore_L = new JLabel("Graded Score:");
+        gradedScore_L.setFont(LabelFont);
+        gradedScore_L.setBounds(10, 115, 120, 20);
+        lec_mainPanel.add(gradedScore_L);
 
+        // Lecturer GradedScore textfield
+        gradedScore_T = new JTextField();
+        gradedScore_T.setBounds(130, 115, 160, 25);
+        gradedScore_T.setFont(TextFont);
+        lec_mainPanel.add(gradedScore_T);
 
+        //  Department Label
+        department_L = new JLabel("Department:");
+        department_L.setFont(LabelFont);
+        department_L.setBounds(350, 115, 145, 20);
+        lec_mainPanel.add(department_L);
 
+        //  Department textfield
+        department_T = new JTextField();
+        department_T.setBounds(510, 115, 160, 25);
+        department_T.setFont(TextFont);
+        lec_mainPanel.add(department_T);
 
+        // Year of Experience label
+        yearOfExp_L = new JLabel("Year Of Exp.:");
+        yearOfExp_L.setFont(LabelFont);
+        yearOfExp_L.setBounds(10, 150, 120, 20);
+        lec_mainPanel.add(yearOfExp_L);
+
+        // Year of Experience TextField
+        yearOfExp_T = new JTextField();
+        yearOfExp_T.setBounds(130, 150, 160, 25);
+        yearOfExp_T.setFont(TextFont);
+        lec_mainPanel.add(yearOfExp_T);
+
+        //add Lecturer Button
+        addlecturer_Btn = new JButton("ADD LECTURER");
+        addlecturer_Btn.setBounds(510, 185, 160, 30);
+        addlecturer_Btn.setFont(new Font("Times Roman", 1, 14));
+        addlecturer_Btn.setBackground(color3);
+        lec_mainPanel.add(addlecturer_Btn);
+        addlecturer_Btn.setFocusable(false);
+
+        /*******************Grade Assignment Panel****************/
+        gradePanel = new JPanel();
+        gradePanel.setLayout(null);
+        gradePanel.setBounds(0, 300, 700, 155);
+        gradePanel.setBackground(pColor1);
+        gradePanel.setVisible(false);
+        teacherGui.add(gradePanel);
+
+        //grade Asignment teacherId Label
+        l2_teacherID_L = new JLabel("Teacher ID:");
+        l2_teacherID_L.setFont(LabelFont);
+        l2_teacherID_L.setBounds(10, 10, 90, 20);
+        gradePanel.add(l2_teacherID_L);
+
+        //Grade Assignment Teacher ID Textfield
+        l2_teacherID_T=new JTextField();
+        l2_teacherID_T.setBounds(130, 10, 80, 25);
+        l2_teacherID_T.setFont(TextFont);
+        gradePanel.add(l2_teacherID_T);
+
+        // Department Label
+        department_L=new JLabel("Department:");
+        department_L.setFont(LabelFont);
+        department_L.setBounds(350, 10, 180, 20);
+        gradePanel.add(department_L);
+
+        //   Department textfield
+        department_T = new JTextField();
+        department_T.setBounds(510, 10, 160, 25);
+        department_T.setFont(TextFont);
+        gradePanel.add(department_T);
+
+        // Graded Score of grade Assignment Label 
+        nGradedScore_L = new JLabel("Graded Score:");
+        nGradedScore_L.setFont(LabelFont);
+        nGradedScore_L.setBounds(10, 45, 120, 20);
+        gradePanel.add(nGradedScore_L);
+
+        //  Graded Score of grade Assignment textfield
+        nGradedScore_T = new JTextField();
+        nGradedScore_T.setBounds(130, 45, 160, 25);
+        nGradedScore_T.setFont(TextFont);
+        gradePanel.add(nGradedScore_T);
+
+        // Year of Experience Of Grade Score Label
+        nyearOfExp_L=new JLabel("Year Of Experience:");
+        nyearOfExp_L.setFont(LabelFont);
+        nyearOfExp_L.setBounds(350, 45, 180, 20);
+        gradePanel.add(nyearOfExp_L);
+
+        //   Year of Experience Of Grade Score textfield
+        nyearOfExp_T = new JTextField();
+        nyearOfExp_T.setBounds(510, 45, 160, 25);
+        nyearOfExp_T.setFont(TextFont);
+        gradePanel.add(nyearOfExp_T);
+
+        //Grade Assignment Button
+        gradeAssign_Btn = new JButton("GRADE ASSIGNMENT");
+        gradeAssign_Btn.setBounds(470, 100, 200, 30);
+        gradeAssign_Btn.setFont(new Font("Times Roman", 1, 14));
+        gradeAssign_Btn.setBackground(color3);
+        gradePanel.add(gradeAssign_Btn);
+        gradeAssign_Btn.setFocusable(false);
+
+        //Display for Lecturer
+        lecturer_display_Btn=new JButton("DISPLAY");
+        lecturer_display_Btn.setBounds(100, 30, 160, 30);
+        lecturer_display_Btn.setFont(new Font("Times Roman", 1, 14));
+        lecturer_display_Btn.setVisible(false);
+        lecturer_display_Btn.setBackground(color3);
+        footerPanel.add(lecturer_display_Btn);
+        lecturer_display_Btn.setFocusable(false);
         
 
 
-
+        //Frame Visibility
         teacherGui.setVisible(true);
 
     }
@@ -396,7 +502,9 @@ public class TeacherGUI implements ActionListener {
                 rmvtutorpanel.setVisible(false);
                 tTutor.setBounds(280, 5, 200, 44);
                 tTutor.setText("LECTURER");
-                teacherGui.setTitle("LECTURER");
+                lec_mainPanel.setVisible(true);
+                lecturer_display_Btn.setVisible(true);
+                gradePanel.setVisible(true);
                 tutor_display_Btn.setVisible(false);
                 
             }
@@ -405,12 +513,13 @@ public class TeacherGUI implements ActionListener {
                 setSalaryPanel.setVisible(true);
                 rmvtutorpanel.setVisible(true);
                 tTutor.setText("TUTOR");
-                teacherGui.setTitle("TUTOR");
                 tutor_display_Btn.setVisible(true);
+                gradePanel.setVisible(false);
 
             }
             
         }
+        
 
     }
 
