@@ -1,8 +1,9 @@
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.JobAttributes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import javax.swing.*;
 import java.util.ArrayList;
 
@@ -12,13 +13,13 @@ import java.util.ArrayList;
  * @author (OM SHANKAR SAH)
  * @version (2024-04-06)
  */
-public class TeacherGUI implements ActionListener {
+public class TeacherGUI implements ActionListener ,WindowListener{
     private JFrame teacherGui;
     private JPanel titlePanel, tutor_mainPanel, lec_mainPanel, gradePanel, setSalaryPanel, rmvtutorpanel, footerPanel;
     private JLabel tTutor, teacherId_L, teacherName_L, add_L, workingT_L, speci_L, workingH_L, empStat__L, acaQuali_L,
             performanceI_L, salary_L, Salary_teacher_ID_L, new_performI_L, new_Salary_L, rmvTeacherID_L, l_teacherId_L,
             l_teacherName_L, l_address_L, l_workingType_L, l_empStatus_L, gradedScore_L, department_L, yearOfExp_L,
-            l2_teacherID_L, l2_department_L, nGradedScore_L, nyearOfExp_L;
+            l2_teacherID_L, nGradedScore_L, nyearOfExp_L;
     private JTextField teacherId_T, teacherName_T, address_T, workingT_T, speci_T, workingH_T, empStat_T, acaQuali_T,
             performanceI_T, salary_T, Salary_teacher_ID_T, new_performI_T, new_Salary_T, rmvTeacherId_T, l_teacherId_T,
             l_teacherName_T, l_address_T, l_workingType_T, l_empStatus_T, gradedScore_T, department_T, yearOfExp_T,
@@ -27,7 +28,6 @@ public class TeacherGUI implements ActionListener {
             lecturer_display_Btn, clear_Btn;
     private JComboBox select;
     private ArrayList<Teacher> teacher_database = new ArrayList<Teacher>();
-    private boolean iscertified = false;
 
     TeacherGUI() {
         // frame
@@ -423,6 +423,7 @@ public class TeacherGUI implements ActionListener {
         addlecturer_Btn.setBounds(510, 185, 160, 30);
         addlecturer_Btn.setFont(new Font("Times Roman", 1, 14));
         addlecturer_Btn.setBackground(color3);
+        addlecturer_Btn.addActionListener(this);
         lec_mainPanel.add(addlecturer_Btn);
         addlecturer_Btn.setFocusable(false);
 
@@ -453,10 +454,10 @@ public class TeacherGUI implements ActionListener {
         gradePanel.add(department_L);
 
         // Department textfield
-        department_T = new JTextField();
-        department_T.setBounds(510, 10, 160, 25);
-        department_T.setFont(TextFont);
-        gradePanel.add(department_T);
+        l2_department_T = new JTextField();
+        l2_department_T.setBounds(510, 10, 160, 25);
+        l2_department_T.setFont(TextFont);
+        gradePanel.add(l2_department_T);
 
         // Graded Score of grade Assignment Label
         nGradedScore_L = new JLabel("Graded Score:");
@@ -486,6 +487,7 @@ public class TeacherGUI implements ActionListener {
         gradeAssign_Btn = new JButton("GRADE ASSIGNMENT");
         gradeAssign_Btn.setBounds(470, 100, 200, 30);
         gradeAssign_Btn.setFont(new Font("Times Roman", 1, 14));
+        gradeAssign_Btn.addActionListener(this);
         gradeAssign_Btn.setBackground(color3);
         gradePanel.add(gradeAssign_Btn);
         gradeAssign_Btn.setFocusable(false);
@@ -496,11 +498,13 @@ public class TeacherGUI implements ActionListener {
         lecturer_display_Btn.setFont(new Font("Times Roman", 1, 14));
         lecturer_display_Btn.setVisible(false);
         lecturer_display_Btn.setBackground(color3);
+        lecturer_display_Btn.addActionListener(this);
         footerPanel.add(lecturer_display_Btn);
         lecturer_display_Btn.setFocusable(false);
 
         // Frame Visibility
         teacherGui.setVisible(true);
+        teacherGui.addWindowListener(this);
 
     }
 
@@ -526,6 +530,7 @@ public class TeacherGUI implements ActionListener {
         l_workingType_T.setText(null);
         l_empStatus_T.setText(null);
         l_workingType_T.setText(null);
+        gradedScore_T.setText(null);
         department_T.setText(null);
         yearOfExp_T.setText(null);
         l2_teacherID_T.setText(null);
@@ -549,6 +554,22 @@ public class TeacherGUI implements ActionListener {
 
     }
 
+    // method for clearing the field after adding Lecturer
+    public void clearLecturer() {
+        l_teacherId_T.setText(null);
+        l_teacherName_T.setText(null);
+        l_address_T.setText(null);
+        ;
+        l_workingType_T.setText(null);
+        l_empStatus_T.setText(null);
+        gradedScore_T.setText(null);
+        department_T.setText(null);
+        yearOfExp_T.setText(null);
+        ;
+
+    }
+
+    // method for clearing field after setting salary
     public void clearSalary() {
         Salary_teacher_ID_T.setText(null);
         new_performI_T.setText(null);
@@ -615,12 +636,11 @@ public class TeacherGUI implements ActionListener {
                         // the tutor_exits is set false
                         boolean tutor_exit = false;
 
-                        // te_ID is a variable which retrives the t_id from the arraylist called
-                        // teacher_database
+                        // itration in teacher_database
                         for (Teacher te_Id : teacher_database) {
                             // if the retrived te_id from the arraylist is same the as the new t_id, then
                             // the tutor_exits will be true and the loop will end
-                            if (te_Id.getTeacherId() == t_id) {
+                            if (te_Id.getTeacherId() == t_id && te_Id instanceof Tutor) {
                                 tutor_exit = true;
                                 break;
 
@@ -660,87 +680,128 @@ public class TeacherGUI implements ActionListener {
             }
             // Action listener for set Salary button
         } else if (s.getSource() == setSalary_Btn) {
-            if (Salary_teacher_ID_T.getText().isBlank() ||
-                    new_performI_T.getText().isBlank() || new_Salary_T.getText().isBlank()) {
+            // checking whether there is empty filed or not
+            if (Salary_teacher_ID_T.getText().isBlank() || new_performI_T.getText().isBlank()
+                    || new_Salary_T.getText().isBlank()) {
+                // display error message if found empty
                 JOptionPane.showMessageDialog(teacherGui, "Please Fill All The Field", "Alert",
                         JOptionPane.ERROR_MESSAGE);
-
             } else {
+                // try and catch for validation check
                 try {
+                    // sotring the value of field in appropriate variable
                     int nt_id = Integer.parseInt(Salary_teacher_ID_T.getText());
                     int npI = Integer.parseInt(new_performI_T.getText());
                     int ns = Integer.parseInt(new_Salary_T.getText());
-                    boolean tutor_check = false;
+                    // to check if teacher id exits or not
                     boolean teachId_check = false;
+                    // itration in teacher database
                     for (Teacher t_id : teacher_database) {
+                        // check if the above object is instance of tutor or not
                         if (t_id instanceof Tutor) {
+                            // downcasting
                             Tutor tut = (Tutor) t_id;
-                            tutor_check = true;
+                            // check if the reterived object id from databse is same as given in fied or not
                             if (tut.getTeacherId() == nt_id) {
+                                // if they asre equal then check is set true
                                 teachId_check = true;
+                            }
+                            // if the teacherid is valid .
+                            if (teachId_check) {
+                                // aslo check if the working hour and performance index is valid or not
                                 if (tut.getWorkingHour() > 20 && tut.getPerformIndex() > 5) {
+                                    // calling setSalary method from tutor class
                                     tut.setSalary(ns, npI);
-                                    JOptionPane.showMessageDialog(teacherGui,"Salary was set successfully \n The Appraised Salary is: "+ tut.getSalary(),"Salary", JOptionPane.INFORMATION_MESSAGE);
-                                    iscertified = true;
+                                    // if valid
+                                    JOptionPane
+                                            .showMessageDialog(teacherGui,
+                                                    "Salary was set successfully \n The Appraised Salary is: "
+                                                            + tut.getSalary(),
+                                                    "Salary", JOptionPane.INFORMATION_MESSAGE);
+                                    // clearing the field after succesfully setting salary
                                     clearSalary();
                                     break;
 
                                 } else {
-                                    JOptionPane.showMessageDialog(teacherGui,"The Tutor isn't Certified yet so that Salary cannot be appraised","Salary ", JOptionPane.INFORMATION_MESSAGE);
-                                    iscertified = false;
+                                    // if the working hour and performance index is invlaid
+                                    JOptionPane.showMessageDialog(teacherGui,
+                                            "The Tutor isn't Certified yet so that Salary cannot be appraised",
+                                            "Salary ", JOptionPane.INFORMATION_MESSAGE);
                                     clearSalary();
+                                    break;
 
                                 }
-
-                            } else {
-                                JOptionPane.showMessageDialog(teacherGui, "Enter the correct Teacher ID", "Invlaid ID",
-                                        JOptionPane.ERROR_MESSAGE);
                             }
 
                         }
 
                     }
+                    // if the teacher id doesnot exits in database
+                    if (!teachId_check) {
+                        // display the error message
+                        JOptionPane.showMessageDialog(teacherGui, "Enter the correct Teacher ID", "Invlaid ID",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
 
                 } catch (Exception e) {
+                    // exception handling for validation
                     JOptionPane.showConfirmDialog(teacherGui, e, "validation", JOptionPane.WARNING_MESSAGE);
                 }
             }
-
+            // Action Listener for remove tutor button
         } else if (s.getSource() == rmvTutor_Btn) {
+            // check if the field are empty or not
             if (rmvTeacherId_T.getText().isBlank()) {
                 JOptionPane.showMessageDialog(teacherGui, "Please Fill All The Field", "Alert",
                         JOptionPane.ERROR_MESSAGE);
 
             } else {
                 try {
+                    // assigning the value from field to varibale
                     int rmvTID = Integer.parseInt(rmvTeacherId_T.getText());
                     boolean id_check = false;
+                    // iteration in teacher database
                     for (Teacher rmv : teacher_database) {
+                        // check if the object is instance of tutot or not
                         if (rmv instanceof Tutor) {
-                            id_check = true;
+                            // downcasting teacher class
+                            Tutor rmvTut = (Tutor) rmv;
+                            // check if teacher id exists or not
                             if (rmv.getTeacherId() == rmvTID) {
-                                if (!iscertified) {
-                                    Tutor rmvTut = (Tutor) rmv;
+                                id_check = true;
+
+                            }
+                            // if teacher id exits
+                            if (id_check) {
+                                // check if the working hour is valid or not
+                                if (rmv.getWorkingHour() < 20) {
+                                    rmvTut.removeTutor();
                                     JOptionPane.showMessageDialog(teacherGui, "Tutor Removed Successfully", "Removed",
                                             JOptionPane.INFORMATION_MESSAGE);
+                                    // setting the field empty after successfully removed
                                     rmvTeacherId_T.setText(null);
+                                    // removing the data/oject from database
                                     teacher_database.remove(rmvTut);
-                                    rmvTut.removeTutor();
                                     break;
 
-                                }else{
-                                    JOptionPane.showMessageDialog(teacherGui, "The Tutor is Satisfied so it cannot be removed", "Info",
+                                } else {
+                                    // if the working hour is valid
+                                    JOptionPane.showMessageDialog(teacherGui,
+                                            "The Tutor is Satisfied so it cannot be removed", "Info",
                                             JOptionPane.INFORMATION_MESSAGE);
+                                    break;
 
                                 }
 
-                            } else {
-                                JOptionPane.showMessageDialog(teacherGui, "Enter the correct Teacher ID", "Invlaid ID",
-                                        JOptionPane.ERROR_MESSAGE);
                             }
 
                         }
 
+                    }
+                    // if the teacher id doesnot conatain in database
+                    if (!id_check) {
+                        JOptionPane.showMessageDialog(teacherGui, "Enter the correct Teacher ID", "Invlaid ID",
+                                JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (Exception e) {
                     JOptionPane.showConfirmDialog(teacherGui, e, "validation", JOptionPane.WARNING_MESSAGE);
@@ -761,8 +822,7 @@ public class TeacherGUI implements ActionListener {
 
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(teacherGui, "The Field is Empty Already", "Alert",
-                        JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(teacherGui, e, "Alert", JOptionPane.ERROR_MESSAGE);
             }
 
         }
@@ -788,11 +848,206 @@ public class TeacherGUI implements ActionListener {
             }
 
         }
+        /*****************************************
+         * Lecturer Buttons action Listener******************************
+         */
+        // Action listener for adding Lecturer
+        else if (s.getSource() == addlecturer_Btn) {
+            // checking if the fileds are empty
+
+            if (l_teacherId_T.getText().isEmpty() || l_teacherName_T.getText().isEmpty()
+                    || l_address_T.getText().isEmpty()
+                    || l_workingType_T.getText().isEmpty() || l_empStatus_T.getText().isEmpty()
+                    || gradedScore_T.getText().isEmpty()
+                    || department_T.getText().isEmpty() || yearOfExp_T.getText().isEmpty()) {
+                // Displays Error message if the text field is empty
+                JOptionPane.showMessageDialog(teacherGui, "Please Fill All The Field", "Alert",
+                        JOptionPane.ERROR_MESSAGE);
+
+            } else {
+                // Adding a try Catch block in order to prevent the data being entered in the
+                // wrong format
+                try {
+                    // Getting the input values from the text fields of the Lecturer Object
+                    int l_t_id = Integer.parseInt(l_teacherId_T.getText());
+                    int gs = Integer.parseInt(gradedScore_T.getText());
+                    int yE = Integer.parseInt(yearOfExp_T.getText());
+                    String t_name = l_teacherName_T.getText();
+                    String add = l_address_T.getText();
+                    String d = department_T.getText();
+                    String wt = l_workingType_T.getText();
+                    String es = l_empStatus_T.getText();
+
+                    // check for String validation
+                    if (t_name.matches("[a-zA-Z\\s]*") && add.matches("[a-zA-Z\\s]*") && d.matches("[a-zA-Z\\s]*")
+                            && wt.matches("[a-zA-Z\\s]*") && es.matches("[a-zA-Z\\s]*")) {
+                        // Condition to Check weather lecturer with the id exists or not
+                        // the lecturer_exits is set false
+                        boolean lecturer_exit = false;
+
+                        // itration in teacher_database
+                        for (Teacher te_Id : teacher_database) {
+                            // if the retrived te_id from the arraylist is same the as the new t_id, then
+                            // the lecturer_exits will be true and the loop will end
+                            if (te_Id.getTeacherId() == l_t_id && te_Id instanceof Lecturer) {
+                                lecturer_exit = true;
+                                break;
+
+                            }
+
+                        }
+                        // display message if lecturer exits
+                        if (lecturer_exit) {
+                            JOptionPane.showMessageDialog(teacherGui, "Lecturer With Given Id Aleardy Exits", "CHECKED",
+                                    JOptionPane.INFORMATION_MESSAGE);
+
+                        } else {
+                            // creating object for Lecturer
+                            Lecturer lec = new Lecturer(l_t_id, t_name, add, wt, es, d, yE, gs);
+                            // adding the object in teacher_database
+                            teacher_database.add(lec);
+                            // display after success adding of lecturer
+                            JOptionPane.showMessageDialog(teacherGui, "Lecturer Added Successfully", "Lecturer Added",
+                                    JOptionPane.INFORMATION_MESSAGE);
+                            // calling the clearLecturer to clear the field after successfully adding
+                            // Lecturer
+                            clearLecturer();
+                        }
+
+                    } else {
+                        // diaplay if the required string filed is invalid
+                        JOptionPane.showMessageDialog(teacherGui, "StringFormatException", "Validation",
+                                JOptionPane.ERROR_MESSAGE);
+
+                    }
+
+                } catch (Exception e) {
+                    // display error if textfield contain invalid textformat
+                    JOptionPane.showMessageDialog(teacherGui, e, "Validation", JOptionPane.ERROR_MESSAGE);
+
+                }
+
+            }
+        } else if (s.getSource() == gradeAssign_Btn) {
+            // checking whether there is empty filed or not
+            if (l2_teacherID_T.getText().isBlank() || l2_department_T.getText().isBlank()
+                    || nGradedScore_T.getText().isBlank() || nyearOfExp_T.getText().isBlank()) {
+                // display error message if found empty
+                JOptionPane.showMessageDialog(teacherGui, "Please Fill All The Field", "Alert",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
+                // try and catch for validation check
+                try {
+                    // sotring the value of field in appropriate variable
+                    int nt_id = Integer.parseInt(l2_teacherID_T.getText());
+                    String nD = l2_department_T.getText();
+                    int ngS = Integer.parseInt(nGradedScore_T.getText());
+                    int nYe = Integer.parseInt(nyearOfExp_T.getText());
+                    if (nD.matches("[a-zA-Z\\s]*")) {
+                        // to check if teacher id exits or not
+                        boolean teachId_check = false;
+                        // itration in teacher database
+                        for (Teacher lec : teacher_database) {
+                            // check if the above object is instance of tutor or not
+                            if (lec instanceof Lecturer) {
+                                // downcasting
+                                Lecturer lect = (Lecturer) lec;
+                                // check if the reterived object id from databse is same as given in fied or not
+                                if (lect.getTeacherId() == nt_id) {
+                                    // if they asre equal then check is set true
+                                    teachId_check = true;
+                                    
+                                }
+                                // if the teacherid is valid .
+                                if (teachId_check) {
+                                    if (lect.getDepartment()==nD) {
+                                        lect.gradeAssignment(ngS, nD, nYe);
+                                        break;
+                                        
+                                    }else{
+                                        JOptionPane.showMessageDialog(teacherGui, "Invalid Department");
+                                        break;
+                                    }
+                                    
+                                }
+
+                            }
+                        }
+                        // if the teacher id doesnot exits in database
+                        if (!teachId_check) {
+                            // display the error message
+                            JOptionPane.showMessageDialog(teacherGui, "Enter the correct Teacher ID", "Invlaid ID",
+                                    JOptionPane.ERROR_MESSAGE);
+                        }
+
+                    } else {
+                        // diaplay if the required string filed is invalid
+                        JOptionPane.showMessageDialog(teacherGui, "StringFormatException", "Validation",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (Exception e) {
+                    // exception handling for validation
+                    JOptionPane.showConfirmDialog(teacherGui, e, "validation", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+
+        }
 
     }
+    //main method 
 
     public static void main(String[] args) {
         new TeacherGUI();
     }
+
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        // TODO Auto-generated method stub
+        int s = JOptionPane.showConfirmDialog(teacherGui, "Do You Want To Close Window?", "?", JOptionPane.YES_NO_OPTION);
+        if (s==JOptionPane.YES_OPTION) {
+            String name=JOptionPane.showInputDialog(teacherGui,"Your Name:");
+            JOptionPane.showMessageDialog(teacherGui, "Thank You ! See You Soon,"+name,"BYE", JOptionPane.INFORMATION_MESSAGE);
+            teacherGui.dispose();
+            
+        }else if (s==JOptionPane.NO_OPTION) {
+            teacherGui.setDefaultCloseOperation(JFrame.ABORT);
+            
+        }
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+        JOptionPane.showMessageDialog(teacherGui, "Welcome To Teacher Management System \n From Developer:Om Shankar Sah", "Greeting ",JOptionPane.INFORMATION_MESSAGE);
+        
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        
+        
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+       
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+        
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+       
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+        
+    }
+
+    
 
 }
