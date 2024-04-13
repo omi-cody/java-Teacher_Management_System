@@ -967,6 +967,7 @@ public class TeacherGUI implements ActionListener ,WindowListener{
                                     lect.gradeAssignment(gS, nD, nYe);
                                     if (lect.getDepartment().equals(nD)) {
                                         JOptionPane.showMessageDialog(teacherGui,lect.gradeAssignment(gS, nD, nYe),"Assigned Grade",JOptionPane.OK_OPTION);
+                                        clearGradeAssign();
                                         break;
                                         
                                     }else{
@@ -999,12 +1000,6 @@ public class TeacherGUI implements ActionListener ,WindowListener{
         }
 
     }
-    //main method 
-
-    public static void main(String[] args) {
-        new TeacherGUI();
-    }
-
 
     @Override
     public void windowClosing(WindowEvent e) {
@@ -1053,6 +1048,11 @@ public class TeacherGUI implements ActionListener ,WindowListener{
     @Override
     public void windowDeactivated(WindowEvent e) {
         
+    }
+    //main method 
+
+    public static void main(String[] args) {
+        new TeacherGUI();
     }
 
     

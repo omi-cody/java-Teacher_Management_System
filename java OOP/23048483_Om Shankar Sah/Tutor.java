@@ -3,7 +3,7 @@
  * Write a description of class Tutor here.
  *
  * @author (OM SHANKAR SAH)
- * @version (2024-01-06)
+ * @version (2024-04-06)
  */
 public class Tutor extends Teacher//Define tutor subclass of Parent class Teacher
 {
