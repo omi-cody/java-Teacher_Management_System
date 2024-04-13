@@ -18,12 +18,12 @@ public class TeacherGUI implements ActionListener ,WindowListener{
     private JPanel titlePanel, tutor_mainPanel, lec_mainPanel, gradePanel, setSalaryPanel, rmvtutorpanel, footerPanel;
     private JLabel tTutor, teacherId_L, teacherName_L, add_L, workingT_L, speci_L, workingH_L, empStat__L, acaQuali_L,
             performanceI_L, salary_L, Salary_teacher_ID_L, new_performI_L, new_Salary_L, rmvTeacherID_L, l_teacherId_L,
-            l_teacherName_L, l_address_L, l_workingType_L, l_empStatus_L, gradedScore_L, department_L, yearOfExp_L,
-            l2_teacherID_L, nGradedScore_L, nyearOfExp_L;
+            l_teacherName_L, l_address_L, l_workingType_L, l_empStatus_L, l_workingHour_L, department_L, yearOfExp_L,
+            l2_teacherID_L, gradedScore_L, nyearOfExp_L;
     private JTextField teacherId_T, teacherName_T, address_T, workingT_T, speci_T, workingH_T, empStat_T, acaQuali_T,
             performanceI_T, salary_T, Salary_teacher_ID_T, new_performI_T, new_Salary_T, rmvTeacherId_T, l_teacherId_T,
-            l_teacherName_T, l_address_T, l_workingType_T, l_empStatus_T, gradedScore_T, department_T, yearOfExp_T,
-            l2_teacherID_T, l2_department_T, nGradedScore_T, nyearOfExp_T;
+            l_teacherName_T, l_address_T, l_workingType_T, l_empStatus_T, l_workingHour_T, department_T, yearOfExp_T,
+            l2_teacherID_T, l2_department_T, gradedScore_T, nyearOfExp_T;
     private JButton addTutor_Btn, setSalary_Btn, addlecturer_Btn, gradeAssign_Btn, rmvTutor_Btn, tutor_display_Btn,
             lecturer_display_Btn, clear_Btn;
     private JComboBox select;
@@ -383,16 +383,16 @@ public class TeacherGUI implements ActionListener ,WindowListener{
         lec_mainPanel.add(l_empStatus_T);
 
         // Lecturer GradedScore Label
-        gradedScore_L = new JLabel("Graded Score:");
-        gradedScore_L.setFont(LabelFont);
-        gradedScore_L.setBounds(10, 115, 120, 20);
-        lec_mainPanel.add(gradedScore_L);
+        l_workingHour_L = new JLabel("Working Hour:");
+        l_workingHour_L.setFont(LabelFont);
+        l_workingHour_L.setBounds(10, 115, 120, 20);
+        lec_mainPanel.add(l_workingHour_L);
 
         // Lecturer GradedScore textfield
-        gradedScore_T = new JTextField();
-        gradedScore_T.setBounds(130, 115, 160, 25);
-        gradedScore_T.setFont(TextFont);
-        lec_mainPanel.add(gradedScore_T);
+        l_workingHour_T = new JTextField();
+        l_workingHour_T.setBounds(130, 115, 160, 25);
+        l_workingHour_T.setFont(TextFont);
+        lec_mainPanel.add(l_workingHour_T);
 
         // Department Label
         department_L = new JLabel("Department:");
@@ -460,16 +460,16 @@ public class TeacherGUI implements ActionListener ,WindowListener{
         gradePanel.add(l2_department_T);
 
         // Graded Score of grade Assignment Label
-        nGradedScore_L = new JLabel("Graded Score:");
-        nGradedScore_L.setFont(LabelFont);
-        nGradedScore_L.setBounds(10, 45, 120, 20);
-        gradePanel.add(nGradedScore_L);
+        gradedScore_L = new JLabel("Graded Score:");
+        gradedScore_L.setFont(LabelFont);
+        gradedScore_L.setBounds(10, 45, 120, 20);
+        gradePanel.add(gradedScore_L);
 
         // Graded Score of grade Assignment textfield
-        nGradedScore_T = new JTextField();
-        nGradedScore_T.setBounds(130, 45, 160, 25);
-        nGradedScore_T.setFont(TextFont);
-        gradePanel.add(nGradedScore_T);
+        gradedScore_T = new JTextField();
+        gradedScore_T.setBounds(130, 45, 160, 25);
+        gradedScore_T.setFont(TextFont);
+        gradePanel.add(gradedScore_T);
 
         // Year of Experience Of Grade Score Label
         nyearOfExp_L = new JLabel("Year Of Experience:");
@@ -530,12 +530,12 @@ public class TeacherGUI implements ActionListener ,WindowListener{
         l_workingType_T.setText(null);
         l_empStatus_T.setText(null);
         l_workingType_T.setText(null);
-        gradedScore_T.setText(null);
+        l_workingHour_T.setText(null);
         department_T.setText(null);
         yearOfExp_T.setText(null);
         l2_teacherID_T.setText(null);
         l2_department_T.setText(null);
-        nGradedScore_T.setText(null);
+        gradedScore_T.setText(null);
         nyearOfExp_T.setText(null);
     }
 
@@ -559,13 +559,11 @@ public class TeacherGUI implements ActionListener ,WindowListener{
         l_teacherId_T.setText(null);
         l_teacherName_T.setText(null);
         l_address_T.setText(null);
-        ;
         l_workingType_T.setText(null);
         l_empStatus_T.setText(null);
-        gradedScore_T.setText(null);
+        l_workingHour_T.setText(null);
         department_T.setText(null);
         yearOfExp_T.setText(null);
-        ;
 
     }
 
@@ -574,6 +572,12 @@ public class TeacherGUI implements ActionListener ,WindowListener{
         Salary_teacher_ID_T.setText(null);
         new_performI_T.setText(null);
         new_Salary_T.setText(null);
+    }
+    public void clearGradeAssign(){
+        l2_teacherID_T.setText(null);
+        l2_department_T.setText(null);
+        gradedScore_T.setText(null);    
+        nyearOfExp_T.setText(null);
     }
 
     @Override
@@ -602,7 +606,7 @@ public class TeacherGUI implements ActionListener ,WindowListener{
             }
 
         }
-        // Action listener for adding tutor
+        // ***************Action listener for adding tutor********************
         else if (s.getSource() == addTutor_Btn) {
             // checking if the fileds are empty
 
@@ -696,11 +700,11 @@ public class TeacherGUI implements ActionListener ,WindowListener{
                     // to check if teacher id exits or not
                     boolean teachId_check = false;
                     // itration in teacher database
-                    for (Teacher t_id : teacher_database) {
+                    for (Teacher tutor : teacher_database) {
                         // check if the above object is instance of tutor or not
-                        if (t_id instanceof Tutor) {
+                        if (tutor instanceof Tutor) {
                             // downcasting
-                            Tutor tut = (Tutor) t_id;
+                            Tutor tut = (Tutor) tutor;
                             // check if the reterived object id from databse is same as given in fied or not
                             if (tut.getTeacherId() == nt_id) {
                                 // if they asre equal then check is set true
@@ -725,7 +729,7 @@ public class TeacherGUI implements ActionListener ,WindowListener{
                                 } else {
                                     // if the working hour and performance index is invlaid
                                     JOptionPane.showMessageDialog(teacherGui,
-                                            "The Tutor isn't Certified yet so that Salary cannot be appraised",
+                                            "The Tutor isn't Certified yet so Salary cannot be appraised",
                                             "Salary ", JOptionPane.INFORMATION_MESSAGE);
                                     clearSalary();
                                     break;
@@ -787,7 +791,7 @@ public class TeacherGUI implements ActionListener ,WindowListener{
                                 } else {
                                     // if the working hour is valid
                                     JOptionPane.showMessageDialog(teacherGui,
-                                            "The Tutor is Satisfied so it cannot be removed", "Info",
+                                            "The Tutor is Qualified so it cannot be removed", "Info",
                                             JOptionPane.INFORMATION_MESSAGE);
                                     break;
 
@@ -848,8 +852,7 @@ public class TeacherGUI implements ActionListener ,WindowListener{
             }
 
         }
-        /*****************************************
-         * Lecturer Buttons action Listener******************************
+        /******************************************Lecturer Buttons action Listener******************************
          */
         // Action listener for adding Lecturer
         else if (s.getSource() == addlecturer_Btn) {
@@ -858,7 +861,7 @@ public class TeacherGUI implements ActionListener ,WindowListener{
             if (l_teacherId_T.getText().isEmpty() || l_teacherName_T.getText().isEmpty()
                     || l_address_T.getText().isEmpty()
                     || l_workingType_T.getText().isEmpty() || l_empStatus_T.getText().isEmpty()
-                    || gradedScore_T.getText().isEmpty()
+                    || l_workingHour_T.getText().isEmpty()
                     || department_T.getText().isEmpty() || yearOfExp_T.getText().isEmpty()) {
                 // Displays Error message if the text field is empty
                 JOptionPane.showMessageDialog(teacherGui, "Please Fill All The Field", "Alert",
@@ -870,11 +873,11 @@ public class TeacherGUI implements ActionListener ,WindowListener{
                 try {
                     // Getting the input values from the text fields of the Lecturer Object
                     int l_t_id = Integer.parseInt(l_teacherId_T.getText());
-                    int gs = Integer.parseInt(gradedScore_T.getText());
+                    int l_wH = Integer.parseInt(l_workingHour_T.getText());
                     int yE = Integer.parseInt(yearOfExp_T.getText());
                     String t_name = l_teacherName_T.getText();
                     String add = l_address_T.getText();
-                    String d = department_T.getText();
+                    String d = department_T.getText().toLowerCase();
                     String wt = l_workingType_T.getText();
                     String es = l_empStatus_T.getText();
 
@@ -903,7 +906,7 @@ public class TeacherGUI implements ActionListener ,WindowListener{
 
                         } else {
                             // creating object for Lecturer
-                            Lecturer lec = new Lecturer(l_t_id, t_name, add, wt, es, d, yE, gs);
+                            Lecturer lec = new Lecturer(l_t_id, t_name, add, wt, es, d, yE, l_wH);
                             // adding the object in teacher_database
                             teacher_database.add(lec);
                             // display after success adding of lecturer
@@ -928,20 +931,21 @@ public class TeacherGUI implements ActionListener ,WindowListener{
                 }
 
             }
+            //Action listener for grade Assignment
         } else if (s.getSource() == gradeAssign_Btn) {
             // checking whether there is empty filed or not
             if (l2_teacherID_T.getText().isBlank() || l2_department_T.getText().isBlank()
-                    || nGradedScore_T.getText().isBlank() || nyearOfExp_T.getText().isBlank()) {
+                    || gradedScore_T.getText().isBlank() || nyearOfExp_T.getText().isBlank()) {
                 // display error message if found empty
                 JOptionPane.showMessageDialog(teacherGui, "Please Fill All The Field", "Alert",
                         JOptionPane.ERROR_MESSAGE);
             } else {
                 // try and catch for validation check
                 try {
-                    // sotring the value of field in appropriate variable
+                    // storingng the value of field in appropriate variable
                     int nt_id = Integer.parseInt(l2_teacherID_T.getText());
-                    String nD = l2_department_T.getText();
-                    int ngS = Integer.parseInt(nGradedScore_T.getText());
+                    String nD = l2_department_T.getText().toLowerCase();
+                    int gS = Integer.parseInt(gradedScore_T.getText());
                     int nYe = Integer.parseInt(nyearOfExp_T.getText());
                     if (nD.matches("[a-zA-Z\\s]*")) {
                         // to check if teacher id exits or not
@@ -960,8 +964,9 @@ public class TeacherGUI implements ActionListener ,WindowListener{
                                 }
                                 // if the teacherid is valid .
                                 if (teachId_check) {
-                                    if (lect.getDepartment()==nD) {
-                                        lect.gradeAssignment(ngS, nD, nYe);
+                                    lect.gradeAssignment(gS, nD, nYe);
+                                    if (lect.getDepartment().equals(nD)) {
+                                        JOptionPane.showMessageDialog(teacherGui,lect.gradeAssignment(gS, nD, nYe),"Assigned Grade",JOptionPane.OK_OPTION);
                                         break;
                                         
                                     }else{
@@ -1003,14 +1008,16 @@ public class TeacherGUI implements ActionListener ,WindowListener{
 
     @Override
     public void windowClosing(WindowEvent e) {
-        // TODO Auto-generated method stub
         int s = JOptionPane.showConfirmDialog(teacherGui, "Do You Want To Close Window?", "?", JOptionPane.YES_NO_OPTION);
         if (s==JOptionPane.YES_OPTION) {
             String name=JOptionPane.showInputDialog(teacherGui,"Your Name:");
-            JOptionPane.showMessageDialog(teacherGui, "Thank You ! See You Soon,"+name,"BYE", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(teacherGui, "Thank You ! See You Soon, "+name,"Message", JOptionPane.INFORMATION_MESSAGE);
             teacherGui.dispose();
             
         }else if (s==JOptionPane.NO_OPTION) {
+            teacherGui.setDefaultCloseOperation(JFrame.ABORT);
+            
+        }else if(s==JOptionPane.CLOSED_OPTION){
             teacherGui.setDefaultCloseOperation(JFrame.ABORT);
             
         }
@@ -1018,7 +1025,7 @@ public class TeacherGUI implements ActionListener ,WindowListener{
 
     @Override
     public void windowOpened(WindowEvent e) {
-        JOptionPane.showMessageDialog(teacherGui, "Welcome To Teacher Management System \n From Developer:Om Shankar Sah", "Greeting ",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(teacherGui, "Welcome To Teacher Management System \n From Developer:--Om Shankar Sah--", "Greeting ",JOptionPane.INFORMATION_MESSAGE);
         
     }
 

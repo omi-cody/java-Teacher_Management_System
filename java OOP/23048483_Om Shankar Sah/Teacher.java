@@ -35,7 +35,7 @@ public class Teacher//Defined a class Teacher.
     }
     public String getAddress()//Define accessor method for address.
     {
-        return address;
+        return this.address;
     }
     public String getWorkingType()//Define accessor method for working type.
     {
@@ -51,10 +51,10 @@ public class Teacher//Defined a class Teacher.
     }
     public void Display()//Define the display method
     {//Print the teacherid,teacher name,address ,working type and employment status.
-        System.out.println("Teacher ID is: "+this.getTeacherId());
-        System.out.println("Teacher Name is: "+this.getTeacherName());
-        System.out.println("Address is: "+this.getAddress());
-        System.out.println("Working Type is: "+this.getWorkingType());
+        System.out.println("Teacher ID : "+this.getTeacherId());
+        System.out.println("Teacher Name : "+this.getTeacherName());
+        System.out.println("Address : "+this.getAddress());
+        System.out.println("Working Type : "+this.getWorkingType());
         System.out.println("Employment Status: "+this.getEmpStatus());
         if(workingHour==0)//Check if the working hour is assigned or not.
         {
