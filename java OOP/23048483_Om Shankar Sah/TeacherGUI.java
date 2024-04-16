@@ -835,13 +835,15 @@ public class TeacherGUI implements ActionListener, WindowListener {
         else if (s.getSource() == lecturer_display_Btn) {
             for (Teacher dis : teacher_database) {
                 if (dis instanceof Lecturer) {
-                    dis.Display();
+                    Lecturer disp = (Lecturer) dis;
+                    disp.Display();
 
                 }
             }
 
         }
-        /******************************************* Lecturer Buttons action Listener******************************
+        /******************************************
+         * Lecturer Buttons action Listener******************************
          */
         // Action listener for adding Lecturer
         else if (s.getSource() == addlecturer_Btn) {
