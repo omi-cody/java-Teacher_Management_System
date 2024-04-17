@@ -35,7 +35,6 @@ public class TeacherGUI implements ActionListener, WindowListener {
     TeacherGUI() {
         // frame
         teacherGui = new JFrame("Teacher");
-        teacherGui.setDefaultCloseOperation(teacherGui.EXIT_ON_CLOSE);
         teacherGui.setBounds(420, 110, 700, 580);
         ImageIcon icon = new ImageIcon("teacherLogo.png");
         teacherGui.setIconImage(icon.getImage());
@@ -1013,11 +1012,11 @@ public class TeacherGUI implements ActionListener, WindowListener {
         int s = JOptionPane.showConfirmDialog(teacherGui, "Do you want to close window?", "?",
                 JOptionPane.YES_NO_OPTION);
         if (s == JOptionPane.YES_OPTION) {
-            teacherGui.dispose();
+            teacherGui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         } else if (s == JOptionPane.NO_OPTION) {
-            teacherGui.setDefaultCloseOperation(JFrame.ABORT);
+            teacherGui.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         } else if (s == JOptionPane.CLOSED_OPTION) {
-            teacherGui.setDefaultCloseOperation(JFrame.ABORT);
+            teacherGui.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         }
     }
 
