@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.*;
+import javax.swing.text.html.HTMLDocument.Iterator;
+
 import java.util.ArrayList;
 
 /**
@@ -18,11 +20,11 @@ public class TeacherGUI implements ActionListener, WindowListener {
     private JPanel titlePanel, tutor_mainPanel, lec_mainPanel, gradePanel, setSalaryPanel, rmvtutorpanel, footerPanel;
     private JLabel tTutor, teacherId_L, teacherName_L, add_L, workingT_L, speci_L, workingH_L, empStat__L, acaQuali_L,
             performanceI_L, salary_L, Salary_teacher_ID_L, new_performI_L, new_Salary_L, rmvTeacherID_L, l_teacherId_L,
-            l_teacherName_L, l_address_L, l_workingType_L, l_empStatus_L, l_workingHour_L, department_L, yearOfExp_L,
+            l_teacherName_L, l_address_L, l_workingType_L, l_empStatus_L, l_gradedScore_L, department_L, yearOfExp_L,
             l2_teacherID_L, gradedScore_L, nyearOfExp_L;
     private JTextField teacherId_T, teacherName_T, address_T, workingT_T, speci_T, workingH_T, empStat_T, acaQuali_T,
             performanceI_T, salary_T, Salary_teacher_ID_T, new_performI_T, new_Salary_T, rmvTeacherId_T, l_teacherId_T,
-            l_teacherName_T, l_address_T, l_workingType_T, l_empStatus_T, l_workingHour_T, department_T, yearOfExp_T,
+            l_teacherName_T, l_address_T, l_workingType_T, l_empStatus_T, l_gradedScore_T, department_T, yearOfExp_T,
             l2_teacherID_T, l2_department_T, gradedScore_T, nyearOfExp_T;
     private JButton addTutor_Btn, setSalary_Btn, addlecturer_Btn, gradeAssign_Btn, rmvTutor_Btn, tutor_display_Btn,
             lecturer_display_Btn, clear_Btn;
@@ -383,16 +385,16 @@ public class TeacherGUI implements ActionListener, WindowListener {
         lec_mainPanel.add(l_empStatus_T);
 
         // Lecturer GradedScore Label
-        l_workingHour_L = new JLabel("Working Hour:");
-        l_workingHour_L.setFont(LabelFont);
-        l_workingHour_L.setBounds(10, 115, 120, 20);
-        lec_mainPanel.add(l_workingHour_L);
+        l_gradedScore_L = new JLabel("Graded Score:");
+        l_gradedScore_L.setFont(LabelFont);
+        l_gradedScore_L.setBounds(10, 115, 120, 20);
+        lec_mainPanel.add(l_gradedScore_L);
 
         // Lecturer GradedScore textfield
-        l_workingHour_T = new JTextField();
-        l_workingHour_T.setBounds(130, 115, 160, 25);
-        l_workingHour_T.setFont(TextFont);
-        lec_mainPanel.add(l_workingHour_T);
+        l_gradedScore_T = new JTextField();
+        l_gradedScore_T.setBounds(130, 115, 160, 25);
+        l_gradedScore_T.setFont(TextFont);
+        lec_mainPanel.add(l_gradedScore_T);
 
         // Department Label
         department_L = new JLabel("Department:");
@@ -530,7 +532,7 @@ public class TeacherGUI implements ActionListener, WindowListener {
         l_workingType_T.setText(null);
         l_empStatus_T.setText(null);
         l_workingType_T.setText(null);
-        l_workingHour_T.setText(null);
+        l_gradedScore_T.setText(null);
         department_T.setText(null);
         yearOfExp_T.setText(null);
         l2_teacherID_T.setText(null);
@@ -561,7 +563,7 @@ public class TeacherGUI implements ActionListener, WindowListener {
         l_address_T.setText(null);
         l_workingType_T.setText(null);
         l_empStatus_T.setText(null);
-        l_workingHour_T.setText(null);
+        l_gradedScore_T.setText(null);
         department_T.setText(null);
         yearOfExp_T.setText(null);
 
@@ -833,13 +835,22 @@ public class TeacherGUI implements ActionListener, WindowListener {
 
         } // display the detail for Lecturer
         else if (s.getSource() == lecturer_display_Btn) {
-            for (Teacher dis : teacher_database) {
-                if (dis instanceof Lecturer) {
-                    Lecturer disp = (Lecturer) dis;
-                    disp.Display();
+            String display;
+            String display_detail;
+            for (Teacher teacher : teacher_database) {
+                if (teacher instanceof Lecturer) {
+                    
+                    Lecturer disp = (Lecturer) teacher;
+                    display_detail  = "Teacher Id: "+disp.getTeacherId()+"\nTeacher Name: "+disp.getTeacherName()+"\nAddress: "+disp.getAddress()+"\nWorking Type: "+disp.getWorkingType()+"\nGraded Score: "+disp.getGradedScore()+"\nDepartment: "+disp.getDepartment()+"\n Year Of Experience: "+disp.getYearOfExp();
+                    //disp.Display();
+                    //System.out.println(display);
 
                 }
+               
+                
             }
+            
+            
 
         }
         /******************************************
@@ -852,7 +863,7 @@ public class TeacherGUI implements ActionListener, WindowListener {
             if (l_teacherId_T.getText().isEmpty() || l_teacherName_T.getText().isEmpty()
                     || l_address_T.getText().isEmpty()
                     || l_workingType_T.getText().isEmpty() || l_empStatus_T.getText().isEmpty()
-                    || l_workingHour_T.getText().isEmpty()
+                    || l_gradedScore_T.getText().isEmpty()
                     || department_T.getText().isEmpty() || yearOfExp_T.getText().isEmpty()) {
                 // Displays Error message if the text field is empty
                 JOptionPane.showMessageDialog(teacherGui, "Please, Fill all the fields", "Alert",JOptionPane.ERROR_MESSAGE);
@@ -863,7 +874,7 @@ public class TeacherGUI implements ActionListener, WindowListener {
                 try {
                     // Getting the input values from the text fields of the Lecturer Object
                     int l_t_id = Integer.parseInt(l_teacherId_T.getText());
-                    int l_wH = Integer.parseInt(l_workingHour_T.getText());
+                    int l_gs = Integer.parseInt(l_gradedScore_T.getText());
                     int yE = Integer.parseInt(yearOfExp_T.getText());
                     String t_name = l_teacherName_T.getText();
                     String add = l_address_T.getText();
@@ -894,7 +905,7 @@ public class TeacherGUI implements ActionListener, WindowListener {
                             JOptionPane.showMessageDialog(teacherGui, "Lecturer with given ID already exits", "CHECKED",JOptionPane.INFORMATION_MESSAGE);
                         } else {
                             // creating object for Lecturer
-                            Lecturer lec = new Lecturer(l_t_id, t_name, add, wt, es, d, yE, l_wH);
+                            Lecturer lec = new Lecturer(l_t_id, t_name, add, wt, es, d, yE, l_gs);
                             // adding the object in teacher_database
                             teacher_database.add(lec);
                             // display after success adding of lecturer
