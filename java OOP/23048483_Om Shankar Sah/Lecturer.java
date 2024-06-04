@@ -52,48 +52,50 @@ public class Lecturer extends Teacher// Define lecturer class as sublclass of Te
     }
 
     // Define method for grade assignment.
+    String fgrade;
     public String gradeAssignment(int gradedScore,String department,int yearOfExp)
     {
         //Check if the lecturer has enough experience and same department
-        if(yearOfExp>=5 && this.getDepartment()==department)
+        if(yearOfExp>=5 && this.getDepartment().equals(department))
   
         {
-            if(gradedScore<=0 && gradedScore>100)
+            if(gradedScore>=0 && gradedScore<=100)
             {
             this.hasGraded=true;//Set the hasGraded to true
             this.gradedScore=gradedScore;
             this.yearOfExp=yearOfExp;
             //Grade the assignments according to criteria given
-             String grade;
+
             if(gradedScore>=70 && gradedScore<=100)
             {
-                grade="Grade A";
-                return grade;
+                fgrade="A";
+                
+                return "The Grade :"+fgrade;
             }
             else if(gradedScore>=60 && gradedScore<=69)
             {
-                grade="Grade B";
-                return grade;
+                fgrade="B";
+                return "The Grade :"+fgrade;
             }
             else if(gradedScore>=50 && gradedScore<=59)
             {
-                grade="Grade C";
-                return grade;
+                fgrade="C";
+                return "The Grade :"+fgrade;
             }
             else if(gradedScore>=40 && gradedScore<=49)
             {
-                grade="Grade D";
-                return grade;
+                fgrade="D";
+                return "The Grade :"+fgrade;
             }
             else
             {
-                grade="Grade E";
-                return grade;
+                fgrade="E";
+                return "The Grade :"+fgrade;
             } 
             
           }
           else{
-                return "invalid GradeScore";
+                return "Invalid GradeScore";
             }
             
             
@@ -103,8 +105,7 @@ public class Lecturer extends Teacher// Define lecturer class as sublclass of Te
         {
             this.hasGraded=false;
             //Print the suitable message if conditioon doesn't match
-            String message="The lecturer is not qualified to grade a assignments";
-            
+            String message="The Lecturer Isn't Qualified To Grade  Assignments";
             return message;
         }
             
@@ -112,17 +113,21 @@ public class Lecturer extends Teacher// Define lecturer class as sublclass of Te
 
     public void Display()// Define display method with the help of method overriding
     {
+        System.out.println("\n-------------------------Lecturer---------------------------");
         super.Display();// Invoke display from parent class
         // Print the department and year of experience
-        System.out.println("Departments is: " + this.getDepartment());
+        System.out.println("Departments : " + this.getDepartment());
         System.out.println("Year Of Experience: " + this.getYearOfExp());
         // Check if the score is graded or not
         if (hasGraded) {
-            System.out.println("The Graded Score is: " + this.getGradedScore());
+            System.out.println("The Graded Score : " + this.getGradedScore());
+            System.out.println("The Grade :"+fgrade);
+            System.out.println("**********************************************************");
 
         } else {
             // If not,print the suitable message
             System.out.println("Score has not been Graded Yet");
+            System.out.println("**********************************************************");
         }
 
     }

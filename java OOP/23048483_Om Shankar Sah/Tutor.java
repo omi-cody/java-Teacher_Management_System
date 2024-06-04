@@ -3,7 +3,7 @@
  * Write a description of class Tutor here.
  *
  * @author (OM SHANKAR SAH)
- * @version (2024-01-06)
+ * @version (2024-04-06)
  */
 public class Tutor extends Teacher//Define tutor subclass of Parent class Teacher
 {
@@ -52,7 +52,7 @@ public class Tutor extends Teacher//Define tutor subclass of Parent class Teache
     public void setSalary(double newSalary,int newPerformIndex)
     {
         //Check if the perfomance index is greater than 5 and working hour is greater than 20 hour or not.
-        if(newPerformIndex>5 && getWorkingHour()>20)
+        if(newPerformIndex>=5 && getWorkingHour()>20)
         {
             //Calculate the appraisal percentage according to perfomance index
             double appraisalPer;
@@ -103,21 +103,24 @@ public class Tutor extends Teacher//Define tutor subclass of Parent class Teache
     public void Display()//method overridding
     
     {
+        System.out.println("\n-------------------------Tutor---------------------------");
         //Check if the tutor is certified then print all the detail from parent class and subclass
         if(isCertified)
         {
             super.Display();//Call the display method from teacher class
             //Print salary,specification,academic qualification,performance index
-            System.out.println("The Salary of Tutor is: "+this.getSalary());
-            System.out.println("The Specilization is: "+this.getSpeci());
-            System.out.println("The Academic Qualification is: "+this.getAcaQual());
-            System.out.println("The Performance Index is:"+this.getPerformIndex());
+            System.out.println("Salary of Tutor : "+this.getSalary());
+            System.out.println("Specilization : "+this.getSpeci());
+            System.out.println("Academic Qualification : "+this.getAcaQual());
+            System.out.println("Performance Index :"+this.getPerformIndex());
+            System.out.println("**********************************************************");
             
         }
         //If not certified then call the display method of parent class only
         else
         {
             super.Display();
+            System.out.println("**********************************************************");
         }
     }
 
